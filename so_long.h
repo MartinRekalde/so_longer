@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/16 21:40:51 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/17 20:43:07 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,23 +24,35 @@
 # include "gnl/get_next_line.h"
 # include "libft/libft.h"
 
+# define AVATAR "textures/ducky_alone.xpm"
+# define WALL "textures/wall.xpm"
+# define FLOOR "textures/floor.xpm"
+# define EXIT "textures/ducky_alone.xpm"
+# define COLLECT "textures/ducky_alone.xpm"
+
 typedef struct s_game
 {
-    void    *mlx;
-    void    *win;
-    char    **map;
-    int     map_width;
-    int     map_height;
-    int     player_x;
-    int     player_y;
-    int     collectibles;
-    int     exit_x;
-    int     exit_y;
-    int     moves;
+	char    **map;
+	char	**map_copy;
+	void    *mlx;
+	void    *win;
+	int     map_x;
+	int     map_y;
+	int     player_x;
+	int     player_y;
+	int		x;
+	int		y;
+	int     collect;
+	int     exit_x;
+	int     exit_y;
+	int     moves;
+	int		count;
+	void	*imgplayer;
+	void	*imgfloor;
+	void	*imgwall;
+	void	*imgexit;
+	void	*imgcollect;
 } t_game;
 
-void    flood_fill(t_game *game, int x, int y, char target);
-int     is_valid_path(t_game *game);
-void    parse_map(t_game *game, char *file);
 
 #endif
