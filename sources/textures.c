@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:53:28 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 21:07:03 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:13:21 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	put_img(t_game *game, int x, int y, void *img)
 	mlx_put_image_to_window(game->mlx, game->win, img, (y * 64), (x * 64));
 }
 
-void	ft_put_image(t_game *game, int x, int y)
+void	put_image(t_game *game, int x, int y)
 {
 	put_img(game, x, y, game->imgfloor);
 	if (equal(game, x, y, '1'))
@@ -32,7 +32,6 @@ void	ft_put_image(t_game *game, int x, int y)
 		put_img(game, x, y, game->imgplayer);
 	put_img(game, 0, 0, game->imgwall);
 }
-
 
 void	paint_map(t_game *game)
 {

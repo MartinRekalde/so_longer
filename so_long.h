@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 20:43:07 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:27:29 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@
 # define FLOOR "textures/floor.xpm"
 # define EXIT "textures/ducky_alone.xpm"
 # define COLLECT "textures/ducky_alone.xpm"
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define ESC 53
 
 typedef struct s_game
 {

@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:10:23 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 20:48:21 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/17 21:29:18 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,22 @@ int	close_window(t_game *game)
 	return (0);
 }
 
-void	ft_hook(t_game *game)
+int	key_press(int keycode, t_game *game)
+{
+	if (keycode == ESC)
+		map_error(game, "You closed the window", 0);
+	else if (keycode == W)
+		ft_move(game, -1, 0);
+	else if (keycode == D)
+		ft_move(game, 0, 1);
+	else if (keycode == A)
+		ft_move(game, 0, -1);
+	else if (keycode == S)
+		ft_move(game, 1, 0);
+	return (0);
+}
+
+void	hook(t_game *game)
 {
 	mlx_hook(game->win, 17, 1, close_window, game);
 	mlx_hook(game->win, 2, 1, key_press, game);
