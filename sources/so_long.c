@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:39:05 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 20:22:17 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 21:17:50 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,25 @@ void	init_s_game(t_game *game)
 	game->count = 0;
 }
 
+void	print_matrix(char **game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (game[i])
+	{
+		while (game[i][j]) 
+		{
+			printf("%c", game[i][j]);
+			j++;
+		}
+		j = 0;
+		i++;
+	}
+}
+
 int main(int argc, char **argv)
 {
 	t_game game;
@@ -38,7 +57,8 @@ int main(int argc, char **argv)
 	{
 		is_ber(argv[1]);
 		init_s_game(&game);
-		open_map(argv[1], &game);
+		game.map = read_map(argv[1]);
+		print_matrix(game.map);
 		is_rectangle(&game);
 		player_position(game.map, &game);
 		exit_position(game.map, &game);

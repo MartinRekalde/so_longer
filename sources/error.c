@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:44:57 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 17:59:57 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:55:03 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_split(t_game *game)
 			while (game->map[x])
 			{
 				free(game->map[x]);
-				free(game->map_copy[x]);
+				//free(game->map_copy[x]);
 				x++;
 			}
 			free(game->map);

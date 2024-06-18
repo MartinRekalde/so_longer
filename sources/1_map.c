@@ -1,53 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   1_map.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:18:51 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 19:40:41 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 22:02:38 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	open_file(char *map_name)
+
+
+char	**fill_map(char **map, int h, char *argv)
 {
+	int	i;
 	int	fd;
 
-	fd = open(map_name, O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error, file can't be opened\n");
-		close(fd);
-		exit(1);
-	}
-	return (fd);
+	i = 0;
+	fd = open(argv, O_RDONLY);
+	while (h > i)
+		map[i++] = get_next_line(fd);
+	map[i] = NULL;
+
+	close (fd);
+	return (map);
 }
 
-void	open_map(char *ber, t_game *game)
+char	**read_map(char *argv)
 {
 	int		fd;
-	char	*buffer;
-	int		i;
-	
-	i = 0;
-	fd = open_file(ber);
-	buffer = malloc(BUFFER_SIZE * sizeof(char));
-	read(fd, buffer, BUFFER_SIZE);
-	if (buffer[0] == '\0' || buffer[0] == '\n')
-		buffer_error("Error, the map is too small.", fd, buffer);
-	while (buffer[i])
+	int		h;
+	int		w;
+	char	*line;
+	char	**map;
+
+	fd = open(argv, O_RDONLY);
+	if (fd == -1)
+		printf("error, read_map.\n");
+	line = get_next_line(fd);
+	w = ft_strlen(line);
+	h = 0;
+	while (line)
 	{
-		if ((buffer[i] == '\n' && buffer[i + 1] == '\n') || (buffer[i] == '\n' && buffer[i + 1] == '\0'))
-				buffer_error("Error, the map is incorrect.", fd, buffer);
-		i++;
+		h++;
+		free(line);
+		line = get_next_line(fd);
 	}
-	game->map = ft_split(buffer, '\n');
-	game->map_copy = ft_split(buffer, '\n');
-	free(buffer);
-	close(fd);
+	map = (char **)malloc(sizeof (char *) * (h * w));
+	map = fill_map(map, h, argv);
+	return (close(fd), map);
 }
 
 void	player_position(char **map, t_game *game)
@@ -57,7 +61,7 @@ void	player_position(char **map, t_game *game)
 	int error;
 
 	x = 0;
-	error = 1;
+	error = 0;
 	while (map[x])
 	{
 		y = 0;
@@ -74,7 +78,7 @@ void	player_position(char **map, t_game *game)
 		x++;
 	}
 	if (error == 1)
-		return (0);
+		return ;
 	else
 		EP_error("Error, invalid number of P");
 }
@@ -86,7 +90,7 @@ void	exit_position(char **map, t_game *game)
 	int error;
 
 	x = 0;
-	error = 1;
+	error = 0;
 	while (map[x])
 	{
 		y = 0;
@@ -102,8 +106,8 @@ void	exit_position(char **map, t_game *game)
 		}
 		x++;
 	}
-	if (error == 0)
-		return (0);
+	if (error == 1)
+		return ;
 	else
 		EP_error("Error, invalid number of E");
 }
@@ -119,15 +123,16 @@ void	check_map(t_game *game)
 		y = 0;
 		while (game->map[x][y])
 		{
+			//printf("%c", game->map[x][y]);
 			if (game->map[x][y] == 'C')
 				game->collect++;
 			else if (game->map[x][y] != '0' && game->map[x][y] != '1' && game->map[x][y] != 'E' && game->map[x][y] != 'P')
-				map_error(game, "Only 01CEP characters admited", 1);
+				map_error(game, "\nOnly 01CEP characters admited\n", 1);
 			y++;
 		}
 		x++;
 	}
-	if (game->collect == 0);
+	if (game->collect == 0)
 		map_error(game, "Error, there must at least 1 collectible", 1);
 }
 

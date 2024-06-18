@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:25:45 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/01/17 18:40:23 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:39:26 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *str)
 	size_t	i;
 
 	i = 0;
-	while (*(str + i))
+	while (str[i])
 		i++;
 	return (i);
 }

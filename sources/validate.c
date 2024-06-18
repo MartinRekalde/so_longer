@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:46:36 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 19:30:44 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 21:53:55 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,43 @@
 
 void	is_ber(char *argv)
 {
-	ft_strrchr(argv[1], '.');
-	if (ft_strcmp(".ber", argv[1]) == 0)
-		return (0);
+	int	i;
+
+	i = ft_strlen(argv);
+	i = i - 4;
+	if (argv[i] == '.' && argv[i + 1] == 'b' && argv[i + 2] == 'e' && argv[i + 3] == 'r')
+	{
+		return ;
+	}
 	else
 	{
-		printf("Error, map file must be a .ber file.\n");
-		exit (1);
+		write(1, "Error, map file must be a .ber file.\n", 38);
+		exit(1);
 	}
 }
 
 void	is_rectangle(t_game *game)
 {
-	int	x;
-	int	y;
+	size_t	x;
+	int		y;
 
 	x = ft_strlen(game->map[0]);
-	y = 1;
-	while (game->map[y])
+	y = 0;
+	while (game->map[y + 1])
 	{
-		if ((int)ft_strlen(game->map[y]) != x)
-		{
-			printf("Error, map is not rectangular.");
-		}
+		if (ft_strlen(game->map[y]) != x)
+			break ;
 		y++;
+	}
+	if (game->map[y][ft_strlen(game->map[y]) - 1] == '\n')
+	{
+		if (ft_strlen(game->map[y]) != x)
+			printf("\nError, map is not rectangular. --> %d\n", (int)ft_strlen(game->map[y]));
+	}
+	else
+	{
+		if (ft_strlen(game->map[y])  + 1 != x)
+			printf("\nError, map is not rectangular. --> %d\n", (int)ft_strlen(game->map[y]));
 	}
 }
 

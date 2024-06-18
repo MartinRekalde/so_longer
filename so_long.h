@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 18:05:30 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 20:21:07 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,21 @@ typedef struct s_game
 void	is_ber(char *argv);
 void	start_game(t_game *game);
 void	init_s_game(t_game *game);
-void	open_map(char *filename, t_game *game);
+char	**read_map(char *argv);
 void	is_rectangle(t_game *game);
 void	player_position(char **map, t_game *game);
 void	exit_position(char **map, t_game *game);
 void	check_map(t_game *game);
 void	check_wall(t_game *game);
 void	finishable_map(t_game *game);
+void	print_matrix(char **game);
 
 void	move(t_game *game, int x, int y);
+int		equal(t_game *game, int x, int y, char c);
 void	put_img(t_game *game, int x, int y, void *img);
 void	paint_map(t_game *game);
 void	hook(t_game *game);
+void	destroy_mlx(t_game *game);
 void	get_xpm(t_game *game);
 int		close_window(t_game *game);
 

@@ -1,25 +1,33 @@
 NAME = so_long
-CC = gcc
+
+CC = gcc -fsanitize=address -g3
 CFLAGS = -Wall -Wextra -Werror
 
-LMLX	= -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
-RM		= rm -rf
+LMLX = -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
 
-SRCS_DIR	=	sources/
-MLX_DIR		=	mlx
-MLX_LIB		=	/libmlx.a
-SRCS		=	so_long.c 1_map.c 2_map.c error.c hook.c movement.c start_game.c textures.c validate.c xpm.c\
-				libft/ft_putendl.c li libft/ft_strcmp.c libft/ft_strrchr.c libft/ft_split.c \
+RM = rm -rf
 
-OBJS = $(SRCS:.c=.o)
+SRCS_DIR = sources/
+MLX_DIR = mlx
+MLX_LIB = /libmlx.a
 
-INCLUDES = -I/usr/include -Imlx
+SRCS = $(SRCS_DIR)so_long.c $(SRCS_DIR)1_map.c $(SRCS_DIR)2_map.c $(SRCS_DIR)error.c \
+	$(SRCS_DIR)hook.c $(SRCS_DIR)movement.c $(SRCS_DIR)start_game.c $(SRCS_DIR)textures.c \
+	$(SRCS_DIR)validate.c $(SRCS_DIR)xpm.c \
+	gnl/get_next_line.c gnl/get_next_line_utils.c \
+	libft/ft_strcmp.c libft/ft_strrchr.c libft/ft_split.c libft/ft_substr.c libft/ft_strlcpy.c
+
+OBJS_DIR = objects/
+OBJS = $(patsubst %.c, $(OBJS_DIR)%.o, $(SRCS))
+
+INCLUDES = -I/usr/include -Imlx -Ignl -Ilibft
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib/X11 -lXext -lX11
 
 all: $(MLX_LIB) $(NAME)
 
-.c.o:
-	$(CC) $(CFLAGS) -c -o $@ $< $(INCLUDES)
+$(OBJS_DIR)%.o: %.c
+	@mkdir -p $(@D)
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCLUDES)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS)
@@ -28,7 +36,7 @@ $(MLX_LIB):
 	@make -C $(MLX_DIR)
 
 clean:
-	rm -f $(OBJS)
+	rm -rf $(OBJS_DIR)
 	@make clean -C $(MLX_DIR)
 
 fclean: clean
