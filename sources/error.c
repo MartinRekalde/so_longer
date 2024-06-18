@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:44:57 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 17:42:11 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:59:57 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,12 @@ void	free_split(t_game *game)
 		free(game->mlx);
 }	
 
-void	ft_free(t_game *game)
+void	free_map(t_game *game)
 {
 	if (game)
 	{
 		if (game->map)
-			ft_free_split(game);
+			free_split(game);
 		if (game->mlx)
 			free(game->mlx);
 	}
@@ -63,7 +63,7 @@ void	map_error(t_game *game, char *message, int error)
 {
 	if (error != 1)
 		destroy_mlx(game);
-	ft_free(game);
+	free_map(game);
 	printf("%s\n", message);
 	exit(0);
 }

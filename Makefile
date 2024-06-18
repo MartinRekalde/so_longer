@@ -8,9 +8,8 @@ RM		= rm -rf
 SRCS_DIR	=	sources/
 MLX_DIR		=	mlx
 MLX_LIB		=	/libmlx.a
-SRCS		=	main.c \
-				libft/ft_putendl.c li libft/ft_strcmp.c libft/ft_strrchr.c \
-				gnl/get_next_line.c gnl/get_next_line_utils.c
+SRCS		=	so_long.c 1_map.c 2_map.c error.c hook.c movement.c start_game.c textures.c validate.c xpm.c\
+				libft/ft_putendl.c li libft/ft_strcmp.c libft/ft_strrchr.c libft/ft_split.c \
 
 OBJS = $(SRCS:.c=.o)
 

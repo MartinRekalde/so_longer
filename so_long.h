@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 17:38:10 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:05:30 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_game
 	void	*imgcollect;
 } t_game;
 
+// Main
 void	is_ber(char *argv);
 void	start_game(t_game *game);
 void	init_s_game(t_game *game);
@@ -69,7 +70,15 @@ void	exit_position(char **map, t_game *game);
 void	check_map(t_game *game);
 void	check_wall(t_game *game);
 void	finishable_map(t_game *game);
+
+void	move(t_game *game, int x, int y);
+void	put_img(t_game *game, int x, int y, void *img);
+void	paint_map(t_game *game);
+void	hook(t_game *game);
+void	get_xpm(t_game *game);
 int		close_window(t_game *game);
+
+// Error
 void	buffer_error(char *message, int fd, char *buffer);
 void	EP_error(char *message);
 void	map_error(t_game *game, char *message, int error);

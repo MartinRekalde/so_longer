@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:38:18 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/17 20:48:51 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:04:26 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	get_xpm(t_game *game)
 	game->imgfloor = mlx_xpm_file_to_image(game->mlx, FLOOR, &(x), &(y));
 	game->imgexit = mlx_xpm_file_to_image(game->mlx, EXIT, &(x), &(y));
 	game->imgcollect = mlx_xpm_file_to_image(game->mlx, COLLECT, &(x), &(y));
-	ft_xpm_checker(game);
+	xpm_check(game);
 }

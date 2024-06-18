@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:03:52 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 17:49:59 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:00:27 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	walk(t_game *game, int x, int y)
 		put_img(game, x, y, game->imgplayer);
 }
 
-void	ft_move(t_game *game, int x, int y)
+void	move(t_game *game, int x, int y)
 {
 	x += game->player_x;
 	y += game->player_y;
