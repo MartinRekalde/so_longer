@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:44:57 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 20:55:03 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:45:00 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	map_error(t_game *game, char *message, int error)
 {
 	if (error != 1)
 		destroy_mlx(game);
-	free_map(game);
+	//free_map(game);
 	printf("%s\n", message);
 	exit(0);
 }

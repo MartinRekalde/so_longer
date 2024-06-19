@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:18:51 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 22:02:38 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/19 22:09:09 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,9 @@ char	**fill_map(char **map, int h, char *argv)
 
 	i = 0;
 	fd = open(argv, O_RDONLY);
-	while (h > i)
+	while (h >= i)
 		map[i++] = get_next_line(fd);
-	map[i] = NULL;
-
+	map[i] = "\n";
 	close (fd);
 	return (map);
 }
@@ -33,7 +32,7 @@ char	**read_map(char *argv)
 {
 	int		fd;
 	int		h;
-	int		w;
+
 	char	*line;
 	char	**map;
 
@@ -41,7 +40,7 @@ char	**read_map(char *argv)
 	if (fd == -1)
 		printf("error, read_map.\n");
 	line = get_next_line(fd);
-	w = ft_strlen(line);
+	
 	h = 0;
 	while (line)
 	{
@@ -49,7 +48,7 @@ char	**read_map(char *argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	map = (char **)malloc(sizeof (char *) * (h * w));
+	map = (char **)malloc(sizeof (char *) * (h + 2)) ;
 	map = fill_map(map, h, argv);
 	return (close(fd), map);
 }
@@ -112,47 +111,69 @@ void	exit_position(char **map, t_game *game)
 		EP_error("Error, invalid number of E");
 }
 
-void	check_map(t_game *game)
+void	get_map_xy(t_game *game)
+{
+	//
+	// CUIDADO CON LOS SALTOS DE LINEA MIRA A VER SI TE AFECTA EN ALGO, PROBABLEMENTE SI
+	//
+	
+	int	y;
+	
+	y = 0;
+	game->map_x = ft_strlen(game->map[0]);
+	printf("x -- -- -- - >%d", game->map_x);
+	while (game->map[y])
+		y++;
+	game->map_y = y;
+}
+int	check_bullshit(t_game *game, char c)
+{
+	printf("--> c = %c", c);
+	if ((c != '1' || c != '0' || c != 'C' || c != 'P' || c != 'E'))
+	{
+		map_error(game, "\nescribe bien inutil .\n", 1);
+		return (1);
+	}
+	return 0;
+}
+
+int	check_wall(t_game *game, char c)
+{
+	if(c != '1')
+	{
+		map_error(game, "\nError, map must be sorrounded by 1 (walls).\n", 1);
+		return (1);
+	}
+	return 0;
+}
+
+int	check_map(t_game *game)
 {
 	int	x;
 	int y;
 
-	x = 0;
-	while (game->map[x])
-	{
-		y = 0;
-		while (game->map[x][y])
-		{
-			//printf("%c", game->map[x][y]);
-			if (game->map[x][y] == 'C')
-				game->collect++;
-			else if (game->map[x][y] != '0' && game->map[x][y] != '1' && game->map[x][y] != 'E' && game->map[x][y] != 'P')
-				map_error(game, "\nOnly 01CEP characters admited\n", 1);
-			y++;
-		}
-		x++;
-	}
-	if (game->collect == 0)
-		map_error(game, "Error, there must at least 1 collectible", 1);
-}
-
-void	check_wall(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
 	y = 0;
-	while (x < game->map_y)
+	while (game->map[y])
 	{
-		if (game->map[x][0] != '1' || game->map[x][game->map_y - 1] != '1')
-			map_error(game, "No walls on the first and/or last line.", 1);
-		x++;
-	}
-	while (x < game->map_x)
-	{
-		if (game->map[y][0] != '1' || game->map[y][game->map_x - 1] != '1')
-			map_error(game, "No walls on the first and/or last column.", 1);
+		x = 0;
+		while (game->map[y][x] != '\n' && game->map[y][x] != '\0')
+		{
+			if (game->map[y][x] == '0' || game->map[y][x] == '1' || game->map[y][x] == 'E' || game->map[y][x] == 'P'|| game->map[y][x] == 'C')
+			{
+				printf("x--->%d mapx--->%d\n", x, game->map_x);
+				if (game->map[y][x] == 'C')
+					game->collect++;
+				if ((y == 0 || y == game->map_y || x == (game->map_x -1) || x == 0))
+					if (check_wall(game, game->map[y][x]) == 1)
+						return (1);
+			}
+			else if(check_bullshit(game, game->map[y][x]) == 1)
+				return 1;
+			x++;
+		}
 		y++;
 	}
+	if (game->collect == 0)
+		map_error(game, "\nError, there must at least 1 collectible.\n", 1);
+	return (0);
 }

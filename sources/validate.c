@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:46:36 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 21:53:55 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/19 20:48:43 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	is_rectangle(t_game *game)
 	if (game->map[y][ft_strlen(game->map[y]) - 1] == '\n')
 	{
 		if (ft_strlen(game->map[y]) != x)
-			printf("\nError, map is not rectangular. --> %d\n", (int)ft_strlen(game->map[y]));
+			map_error(game, "Error, is not rectangle.\n", 1);
 	}
 	else
 	{
 		if (ft_strlen(game->map[y])  + 1 != x)
-			printf("\nError, map is not rectangular. --> %d\n", (int)ft_strlen(game->map[y]));
+			map_error(game, "Error, is not rectangle.\n", 1);
 	}
 }
 

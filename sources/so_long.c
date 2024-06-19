@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:39:05 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 21:17:50 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/19 21:23:22 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,13 @@ int main(int argc, char **argv)
 		is_rectangle(&game);
 		player_position(game.map, &game);
 		exit_position(game.map, &game);
-		check_map(&game);
-		check_wall(&game);
-		finishable_map(&game);
+		if (check_map(&game) == 1)
+		{
+			map_error(&game, " hola", 1);
+			return (1);
+		}
+		get_map_xy(&game);
+		//finishable_map(&game);
 		start_game(&game);
 	}
 	return (0);
