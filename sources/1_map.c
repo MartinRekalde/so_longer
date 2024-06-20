@@ -12,8 +12,6 @@
 
 #include "../so_long.h"
 
-
-
 char	**fill_map(char **map, int h, char *argv)
 {
 	int	i;
@@ -113,25 +111,21 @@ void	exit_position(char **map, t_game *game)
 
 void	get_map_xy(t_game *game)
 {
-	//
-	// CUIDADO CON LOS SALTOS DE LINEA MIRA A VER SI TE AFECTA EN ALGO, PROBABLEMENTE SI
-	//
-	
 	int	y;
 	
 	y = 0;
 	game->map_x = ft_strlen(game->map[0]);
-	printf("x -- -- -- - >%d", game->map_x);
 	while (game->map[y])
 		y++;
 	game->map_y = y;
 }
-int	check_bullshit(t_game *game, char c)
+
+int	check_char(t_game *game, char c)
 {
 	printf("--> c = %c", c);
 	if ((c != '1' || c != '0' || c != 'C' || c != 'P' || c != 'E'))
 	{
-		map_error(game, "\nescribe bien inutil .\n", 1);
+		map_error(game, "\nError, not recognized character in map.\n", 1);
 		return (1);
 	}
 	return 0;
@@ -160,14 +154,12 @@ int	check_map(t_game *game)
 		{
 			if (game->map[y][x] == '0' || game->map[y][x] == '1' || game->map[y][x] == 'E' || game->map[y][x] == 'P'|| game->map[y][x] == 'C')
 			{
-				printf("x--->%d mapx--->%d\n", x, game->map_x);
 				if (game->map[y][x] == 'C')
 					game->collect++;
-				if ((y == 0 || y == game->map_y || x == (game->map_x -1) || x == 0))
-					if (check_wall(game, game->map[y][x]) == 1)
-						return (1);
+				if ((y == 0 || y == game->map_y || x == (game->map_x -1) || x == 0) && (check_wall(game, game->map[y][x]) == 1))
+					return (1);
 			}
-			else if(check_bullshit(game, game->map[y][x]) == 1)
+			else if(check_char(game, game->map[y][x]) == 1)
 				return 1;
 			x++;
 		}
