@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:18:51 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/20 20:22:33 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 21:49:51 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,6 @@ void	get_map_xy(t_game *game)
 
 int	check_char(t_game *game, char c)
 {
-	printf("--> c = %c", c);
 	if ((c != '1' || c != '0' || c != 'C' || c != 'P' || c != 'E'))
 	{
 		map_error(game, "\nError, not recognized character in map.\n", 1);
@@ -156,7 +155,7 @@ int	check_map(t_game *game)
 			{
 				if (game->map[y][x] == 'C')
 					game->collect++;
-				if ((y == 0 || y == game->map_y || x == (game->map_x -1) || x == 0) && (check_wall(game, game->map[y][x]) == 1))
+				if ((y == 0 || y == game->map_y - 1 || x == game->map_x - 2 || x == 0) && (check_wall(game, game->map[y][x]) == 1))
 					return (1);
  			}
 			else if(check_char(game, game->map[y][x]) == 1)

@@ -1,6 +1,6 @@
 NAME = so_long
 
-CC = gcc -fsanitize=address -g3
+CC = gcc -g3
 CFLAGS = -Wall -Wextra -Werror
 
 LMLX = -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
