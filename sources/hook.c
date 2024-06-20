@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:10:23 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 18:00:56 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:44:04 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,22 @@ void	destroy_mlx(t_game *game)
 
 int	close_window(t_game *game)
 {
-	map_error(game, "Window closed", 0);
+	map_error(game, "\nWindow closed\n", 0);
 	return (0);
 }
 
 int	key_press(int keycode, t_game *game)
 {
 	if (keycode == ESC)
-		map_error(game, "You closed the window", 0);
+		map_error(game, "\nYou closed the window\n", 0);
 	else if (keycode == W)
-		move(game, -1, 0);
-	else if (keycode == D)
-		move(game, 0, 1);
-	else if (keycode == A)
 		move(game, 0, -1);
-	else if (keycode == S)
+	else if (keycode == D)
 		move(game, 1, 0);
+	else if (keycode == A)
+		move(game, -1, 0);
+	else if (keycode == S)
+		move(game, 0, 1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:44:57 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/19 20:45:00 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:38:24 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	EP_error(char *message)
 	exit(1);
 }
 
-void	free_split(t_game *game)
+void	free_by_char(t_game *game)
 {
 	int x;
 
@@ -54,7 +54,7 @@ void	free_map(t_game *game)
 	if (game)
 	{
 		if (game->map)
-			free_split(game);
+			free_by_char(game);
 		if (game->mlx)
 			free(game->mlx);
 	}

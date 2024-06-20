@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:38:18 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/19 21:56:05 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:27:59 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	get_xpm(t_game *game)
 	int	x;
 	int	y;
 
-	x = 16;
-	y = 16;
+	x = 128;
+	y = 128;
 	xpm_check(game);
 	game->imgplayer = mlx_xpm_file_to_image(game->mlx, AVATAR, &(x) , &(y));
 	game->imgwall = mlx_xpm_file_to_image(game->mlx, WALL, &(x), &(y));

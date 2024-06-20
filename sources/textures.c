@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:53:28 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/19 21:56:16 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 18:28:11 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	put_img(t_game *game, int x, int y, void *img)
 {
-	mlx_put_image_to_window(game->mlx, game->win, img, (x  * 16), (y *16));
+	mlx_put_image_to_window(game->mlx, game->win, img, (x  * 128), (y *128));
 }
 
 void	put_image(t_game *game, int x, int y)

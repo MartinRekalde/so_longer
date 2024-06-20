@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 21:03:52 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 18:17:53 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:35:54 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@ int	equal(t_game *game, int x, int y, char c)
 void	walk(t_game *game, int x, int y)
 {
 	game->moves++;
-	printf("Movement number %i", game->moves);
-	put_img(game, x, y, game->imgfloor);
-	if (game->collect == 0)
-		put_img(game, x, y, game->imgplayer);
+	printf("\nMove number: %i\nColletables left: %i\n", game->moves, game->collect);
+	put_img(game, x, y, game->imgplayer);
 }
-
-void	move(t_game *game, int x, int y)
+int	move(t_game *game, int x, int y)
 {
-	x += game->player_x;
-	y += game->player_y;
+	x = game->player_x + x;
+	y = game->player_y + y;
 	if (equal(game, x, y, '1'))
-		return ;
-	else if (equal(game, x, y, '0'))
-		walk(game, x, y);
+		return (0);
+	put_img(game, game->player_x , game->player_y, game->imgfloor);
+	game->player_x = x;
+	game->player_y = y;
+	if (equal(game, x, y, '0'))
+		 walk(game, x, y);
 	else if (equal(game, x, y, 'C'))
 	{
 		walk(game, x, y);
@@ -45,5 +45,6 @@ void	move(t_game *game, int x, int y)
 	else if (equal(game, x, y, 'E') && game->collect == 0)
 		walk(game, x, y);
 	if (game->collect == 0 && game->player_x == game->exit_x && game->player_y == game->exit_y)
-		map_error(game, "You Win", 0);
+		map_error(game, "\nYou Win\n", 0);
+	return (0);
 }

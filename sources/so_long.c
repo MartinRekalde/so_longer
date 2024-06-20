@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:39:05 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/19 21:23:22 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:32:25 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,28 +47,30 @@ void	print_matrix(char **game)
 	}
 }
 
+
 int main(int argc, char **argv)
 {
 	t_game game;
 
 	if (argc != 2)
-		return(printf("Usage: ./so_long map.ber"), 1);
+		return(printf("\nUsage: ./so_long map.ber\n"), 1);
 	else
 	{
 		is_ber(argv[1]);
 		init_s_game(&game);
 		game.map = read_map(argv[1]);
+		game.map_copy = read_map(argv[1]);
 		print_matrix(game.map);
 		is_rectangle(&game);
 		player_position(game.map, &game);
 		exit_position(game.map, &game);
 		if (check_map(&game) == 1)
 		{
-			map_error(&game, " hola", 1);
+			map_error(&game, "hola\n", 1);
 			return (1);
 		}
 		get_map_xy(&game);
-		//finishable_map(&game);
+		finishable_map(&game);
 		start_game(&game);
 	}
 	return (0);

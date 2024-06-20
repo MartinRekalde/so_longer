@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/19 21:40:44 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 19:13:14 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 # define FLOOR "textures/floor.xpm"
 # define EXIT "textures/ducky_alone.xpm"
 # define COLLECT "textures/ducky_alone.xpm"
-# define W 13
-# define A 0
-# define S 1
-# define D 2
-# define ESC 53
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+# define ESC 65307
 
 typedef struct s_game
 {
@@ -71,7 +71,7 @@ int		check_map(t_game *game);
 void	finishable_map(t_game *game);
 void	print_matrix(char **game);
 
-void	move(t_game *game, int x, int y);
+int		move(t_game *game, int x, int y);
 int		equal(t_game *game, int x, int y, char c);
 void	put_img(t_game *game, int x, int y, void *img);
 void	paint_map(t_game *game);

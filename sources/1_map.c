@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:18:51 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/19 22:09:09 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:22:33 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**read_map(char *argv)
 
 	fd = open(argv, O_RDONLY);
 	if (fd == -1)
-		printf("error, read_map.\n");
+		printf("\nError, read_map.\n");
 	line = get_next_line(fd);
 	
 	h = 0;
@@ -57,27 +57,27 @@ void	player_position(char **map, t_game *game)
 	int	y;
 	int error;
 
-	x = 0;
+	y = 0;
 	error = 0;
-	while (map[x])
+	while (map[y])
 	{
-		y = 0;
-		while(map[x][y])
+		x = 0;
+		while(map[y][x])
 		{
-			if (map[x][y] == 'P')
+			if (map[y][x] == 'P')
 			{
 				error++;
 				game->player_x = x;
 				game->player_y = y;
 			}
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	if (error == 1)
 		return ;
 	else
-		EP_error("Error, invalid number of P");
+		EP_error("\nError, invalid number of P\n");
 }
 
 void	exit_position(char **map, t_game *game)
@@ -106,7 +106,7 @@ void	exit_position(char **map, t_game *game)
 	if (error == 1)
 		return ;
 	else
-		EP_error("Error, invalid number of E");
+		EP_error("\nError, invalid number of E\n");
 }
 
 void	get_map_xy(t_game *game)
@@ -158,7 +158,7 @@ int	check_map(t_game *game)
 					game->collect++;
 				if ((y == 0 || y == game->map_y || x == (game->map_x -1) || x == 0) && (check_wall(game, game->map[y][x]) == 1))
 					return (1);
-			}
+ 			}
 			else if(check_char(game, game->map[y][x]) == 1)
 				return 1;
 			x++;

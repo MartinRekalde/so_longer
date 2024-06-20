@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 19:42:04 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/18 19:30:16 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/20 20:37:38 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@ void	finishable_map(t_game *game)
 	game->y = game->player_y;
 	flood_map(game, game->x, game->y);
 	if (game->count != game->collect + 1)
-		map_error(game, "The map isn't finishable", 1);
+		map_error(game, "\nError, the map isn't finishable\n", 1);
 }
 
