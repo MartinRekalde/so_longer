@@ -37,7 +37,7 @@ void	print_matrix(char **game)
 	j = 0;
 	while (game[i])
 	{
-		while (game[i][j]) 
+		while (game[i][j])
 		{
 			printf("%c", game[i][j]);
 			j++;
@@ -47,13 +47,12 @@ void	print_matrix(char **game)
 	}
 }
 
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_game game;
+	t_game	game;
 
 	if (argc != 2)
-		return(printf("\nUsage: ./so_long map.ber\n"), 1);
+		return (printf("\nUsage: ./so_long map.ber\n"), 1);
 	else
 	{
 		is_ber(argv[1]);

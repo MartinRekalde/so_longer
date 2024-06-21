@@ -14,7 +14,7 @@
 
 void	put_img(t_game *game, int x, int y, void *img)
 {
-	mlx_put_image_to_window(game->mlx, game->win, img, (x  * 128), (y *128));
+	mlx_put_image_to_window(game->mlx, game->win, img, (x * 128), (y * 128));
 }
 
 void	put_image(t_game *game, int x, int y)
@@ -37,7 +37,7 @@ void	paint_map(t_game *game)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while (game->map[y])
 	{

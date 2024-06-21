@@ -25,7 +25,7 @@ void	get_xpm(t_game *game)
 
 	x = 128;
 	y = 128;
-	game->imgplayer = mlx_xpm_file_to_image(game->mlx, AVATAR, &(x) , &(y));
+	game->imgplayer = mlx_xpm_file_to_image(game->mlx, AVATAR, &(x), &(y));
 	game->imgwall = mlx_xpm_file_to_image(game->mlx, WALL, &(x), &(y));
 	game->imgfloor = mlx_xpm_file_to_image(game->mlx, FLOOR, &(x), &(y));
 	game->imgexit = mlx_xpm_file_to_image(game->mlx, EXIT, &(x), &(y));

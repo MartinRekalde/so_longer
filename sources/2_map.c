@@ -12,7 +12,6 @@
 
 #include "../so_long.h"
 
-
 void	flood_map(t_game *game, int x, int y)
 {
 	if ((game->map_copy[x][y] == 'C' || game->map_copy[x][y] == 'E') && game->map_copy[x][y])
@@ -35,4 +34,3 @@ void	finishable_map(t_game *game)
 	if (game->count != game->collect + 1)
 		map_error(game, "\nError, the map isn't finishable\n", 1);
 }
-

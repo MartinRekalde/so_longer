@@ -47,8 +47,7 @@ void	is_rectangle(t_game *game)
 	}
 	else
 	{
-		if (ft_strlen(game->map[y])  + 1 != x)
+		if (ft_strlen(game->map[y]) + 1 != x)
 			map_error(game, "Error, is not rectangle.\n", 1);
 	}
 }
-

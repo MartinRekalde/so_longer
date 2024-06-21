@@ -22,7 +22,7 @@ int	equal(t_game *game, int x, int y, char c)
 void	walk(t_game *game, int x, int y)
 {
 	game->moves++;
-	printf("\nMove number: %i\nColletables left: %i\n", game->moves, game->collect);
+	printf("\nMove number: %i", game->moves, game->collect);
 	put_img(game, x, y, game->imgplayer);
 }
 
@@ -32,11 +32,11 @@ int	move(t_game *game, int x, int y)
 	y = game->player_y + y;
 	if (equal(game, x, y, '1') || (equal(game, x, y, 'E') && game->collect != 0))
 		return (0);
-	put_img(game, game->player_x , game->player_y, game->imgfloor);
+	put_img(game, game->player_x, game->player_y, game->imgfloor);
 	if (equal(game, x, y, '0'))
-		 walk(game, x, y);
+		walk(game, x, y);
 	else if (equal(game, x, y, 'P'))
-		walk(game, x, y); 
+		walk(game, x, y);
 	else if (equal(game, x, y, 'C'))
 	{
 		walk(game, x, y);
@@ -49,7 +49,6 @@ int	move(t_game *game, int x, int y)
 		walk(game, x, y);
 		map_error(game, "\n¿You Won?\n", 0);
 	}
-	//printf("\nLa salida está en: %i%i\n", game->exit_x, game->exit_y);		
 	game->player_x = x;
 	game->player_y = y;
 	return (0);

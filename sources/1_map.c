@@ -30,7 +30,6 @@ char	**read_map(char *argv)
 {
 	int		fd;
 	int		h;
-
 	char	*line;
 	char	**map;
 
@@ -38,7 +37,6 @@ char	**read_map(char *argv)
 	if (fd == -1)
 		printf("\nError, read_map.\n");
 	line = get_next_line(fd);
-	
 	h = 0;
 	while (line)
 	{
@@ -46,7 +44,7 @@ char	**read_map(char *argv)
 		free(line);
 		line = get_next_line(fd);
 	}
-	map = (char **)malloc(sizeof (char *) * (h + 2)) ;
+	map = (char **)malloc(sizeof (char *) * (h + 2));
 	map = fill_map(map, h, argv);
 	return (close(fd), map);
 }
@@ -55,14 +53,14 @@ void	player_position(char **map, t_game *game)
 {
 	int	x;
 	int	y;
-	int error;
+	int	error;
 
 	y = 0;
 	error = 0;
 	while (map[y])
 	{
 		x = 0;
-		while(map[y][x])
+		while (map[y][x])
 		{
 			if (map[y][x] == 'P')
 			{
@@ -84,14 +82,14 @@ void	exit_position(char **map, t_game *game)
 {
 	int	x;
 	int	y;
-	int error;
+	int	error;
 
 	x = 0;
 	error = 0;
 	while (map[x])
 	{
 		y = 0;
-		while(map[x][y])
+		while (map[x][y])
 		{
 			if (map[x][y] == 'E')
 			{
@@ -112,7 +110,7 @@ void	exit_position(char **map, t_game *game)
 void	get_map_xy(t_game *game)
 {
 	int	y;
-	
+
 	y = 0;
 	game->map_x = ft_strlen(game->map[0]);
 	while (game->map[y])
@@ -127,23 +125,23 @@ int	check_char(t_game *game, char c)
 		map_error(game, "\nError, not recognized character in map.\n", 1);
 		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 int	check_wall(t_game *game, char c)
 {
-	if(c != '1')
+	if (c != '1')
 	{
 		map_error(game, "\nError, map must be sorrounded by 1 (walls).\n", 1);
 		return (1);
 	}
-	return 0;
+	return (0);
 }
 
 int	check_map(t_game *game)
 {
 	int	x;
-	int y;
+	int	y;
 
 	y = 0;
 	while (game->map[y])
@@ -151,15 +149,15 @@ int	check_map(t_game *game)
 		x = 0;
 		while (game->map[y][x] != '\n' && game->map[y][x] != '\0')
 		{
-			if (game->map[y][x] == '0' || game->map[y][x] == '1' || game->map[y][x] == 'E' || game->map[y][x] == 'P'|| game->map[y][x] == 'C')
+			if (game->map[y][x] == '0' || game->map[y][x] == '1' || game->map[y][x] == 'E' || game->map[y][x] == 'P' || game->map[y][x] == 'C')
 			{
 				if (game->map[y][x] == 'C')
 					game->collect++;
 				if ((y == 0 || y == game->map_y - 1 || x == game->map_x - 2 || x == 0) && (check_wall(game, game->map[y][x]) == 1))
 					return (1);
- 			}
-			else if(check_char(game, game->map[y][x]) == 1)
-				return 1;
+			}
+			else if (check_char(game, game->map[y][x]) == 1)
+				return (1);
 			x++;
 		}
 		y++;

@@ -20,7 +20,7 @@ void	buffer_error(char *message, int fd, char *buffer)
 	exit(1);
 }
 
-void	EP_error(char *message)
+void	ep_error(char *message)
 {
 	printf("%s\n", message);
 	exit(1);
@@ -28,7 +28,7 @@ void	EP_error(char *message)
 
 void	free_by_char(t_game *game)
 {
-	int x;
+	int	x;
 
 	x = 0;
 	if (game)
@@ -47,7 +47,7 @@ void	free_by_char(t_game *game)
 	}
 	if (game->mlx)
 		free(game->mlx);
-}	
+}
 
 void	free_map(t_game *game)
 {
@@ -57,6 +57,7 @@ void	free_map(t_game *game)
 			free_by_char(game);
 	}
 }
+
 void	map_error(t_game *game, char *message, int error)
 {
 	if (error != 1)
