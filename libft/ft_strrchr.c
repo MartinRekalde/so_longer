@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 16:39:01 by mrekalde          #+#    #+#             */
-/*   Updated: 2023/10/11 11:13:57 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:23:11 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_strrchr(const char *s, int c)
 	while (str[i] != '\0')
 		i++;
 	while (i >= 0)
-	{	
+	{
 		if (str[i] == (char)c)
 			return (&str[i]);
 		i--;
