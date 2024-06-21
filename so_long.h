@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/21 16:41:48 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:37:20 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define WALL "textures/wall.xpm"
 # define FLOOR "textures/floor.xpm"
 # define EXIT "textures/ducky_alone.xpm"
-# define COLLECT "textures/ducky_alone.xpm"
+# define COLLECT "textures/bread.xpm"
 # define W 119
 # define A 97
 # define S 115
