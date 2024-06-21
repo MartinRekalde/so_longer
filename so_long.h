@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/16 21:08:07 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/20 19:13:14 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:41:48 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,29 +37,28 @@
 
 typedef struct s_game
 {
-	char    **map;
+	char	**map;
 	char	**map_copy;
-	void    *mlx;
-	void    *win;
-	int     map_x;
-	int     map_y;
-	int     player_x;
-	int     player_y;
+	void	*mlx;
+	void	*win;
+	int		map_x;
+	int		map_y;
+	int		player_x;
+	int		player_y;
 	int		x;
 	int		y;
-	int     collect;
-	int     exit_x;
-	int     exit_y;
-	int     moves;
+	int		collect;
+	int		exit_x;
+	int		exit_y;
+	int		moves;
 	int		count;
 	void	*imgplayer;
 	void	*imgfloor;
 	void	*imgwall;
 	void	*imgexit;
 	void	*imgcollect;
-} t_game;
+}	t_game;
 
-// Main
 void	is_ber(char *argv);
 void	start_game(t_game *game);
 void	init_s_game(t_game *game);
@@ -69,8 +68,6 @@ void	player_position(char **map, t_game *game);
 void	exit_position(char **map, t_game *game);
 int		check_map(t_game *game);
 void	finishable_map(t_game *game);
-void	print_matrix(char **game);
-
 int		move(t_game *game, int x, int y);
 int		equal(t_game *game, int x, int y, char c);
 void	put_img(t_game *game, int x, int y, void *img);
@@ -80,10 +77,8 @@ void	destroy_mlx(t_game *game);
 void	get_xpm(t_game *game);
 int		close_window(t_game *game);
 void	get_map_xy(t_game *game);
-
-// Error
-void	buffer_error(char *message, int fd, char *buffer);
-void	EP_error(char *message);
+void	ft_printf(char *str);
+void	ep_error(char *message);
 void	map_error(t_game *game, char *message, int error);
 
 #endif

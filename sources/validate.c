@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 15:46:36 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/20 22:06:39 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:20:27 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	is_ber(char *argv)
 
 	i = ft_strlen(argv);
 	i = i - 4;
-	if (i > 1 && (argv[i] == '.' && argv[i + 1] == 'b' && argv[i + 2] == 'e' && argv[i + 3] == 'r' && argv[i - 1] != '/'))
+	if (i > 1 && (argv[i] == '.' && argv[i + 1] == 'b'
+			&& argv[i + 2] == 'e' && argv[i + 3] == 'r' && argv[i - 1] != '/'))
 		return ;
 	else
 	{

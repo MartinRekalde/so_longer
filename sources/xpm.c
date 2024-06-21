@@ -6,7 +6,7 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 20:38:18 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/20 21:37:28 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/21 17:20:49 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	xpm_check(t_game *game)
 {
-	if (!game->imgplayer || !game->imgwall || !game->imgfloor || !game->imgexit || !game->collect)
+	if (!game->imgplayer || !game->imgwall
+		|| !game->imgfloor || !game->imgexit || !game->collect)
 		map_error(game, "Error, one or more textures missing.", 0);
 }
 

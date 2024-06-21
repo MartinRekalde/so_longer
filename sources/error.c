@@ -6,23 +6,25 @@
 /*   By: mrekalde <mrekalde@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/17 16:44:57 by mrekalde          #+#    #+#             */
-/*   Updated: 2024/06/20 21:23:21 by mrekalde         ###   ########.fr       */
+/*   Updated: 2024/06/21 16:43:07 by mrekalde         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-void	buffer_error(char *message, int fd, char *buffer)
+void	ft_printf(char *str)
 {
-	free(buffer);
-	close(fd);
-	printf("%s\n", message);
-	exit(1);
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		write(1, &str[i], 1);
+	write(1, "\n", 2);
 }
 
 void	ep_error(char *message)
 {
-	printf("%s\n", message);
+	ft_printf(message);
 	exit(1);
 }
 
@@ -63,6 +65,6 @@ void	map_error(t_game *game, char *message, int error)
 	if (error != 1)
 		destroy_mlx(game);
 	free_map(game);
-	printf("%s\n", message);
+	ft_printf(message);
 	exit(0);
 }

@@ -1,6 +1,6 @@
 NAME = so_long
 
-CC = gcc -g3
+CC = gcc -g3 #-fsanitize=address,leak
 CFLAGS = -Wall -Wextra -Werror
 
 LMLX = -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
@@ -13,7 +13,7 @@ MLX_LIB = /libmlx.a
 
 SRCS = $(SRCS_DIR)so_long.c $(SRCS_DIR)1_map.c $(SRCS_DIR)2_map.c $(SRCS_DIR)error.c \
 	$(SRCS_DIR)hook.c $(SRCS_DIR)movement.c $(SRCS_DIR)start_game.c $(SRCS_DIR)textures.c \
-	$(SRCS_DIR)validate.c $(SRCS_DIR)xpm.c \
+	$(SRCS_DIR)validate.c $(SRCS_DIR)xpm.c $(SRCS_DIR)flood_fill.c \
 	gnl/get_next_line.c gnl/get_next_line_utils.c \
 	libft/ft_strcmp.c libft/ft_strrchr.c libft/ft_split.c libft/ft_substr.c libft/ft_strlcpy.c
 
